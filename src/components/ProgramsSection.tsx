@@ -2,7 +2,10 @@ import { GraduationCap, HeartHandshake, Stethoscope, Brain, Wrench, Users, Wheat
 import educationImage from '@/assets/education-support.jpg';
 import womenImage from '@/assets/women-empowerment.jpg';
 import healthcareImage from '@/assets/healthcare.jpg';
-import studentsGroup from '@/assets/gallery/students-group.jpg';
+import agricultureImage from '@/assets/agriculture.jpg';
+import vocationalImage from '@/assets/vocational-training.jpg';
+import mentalHealthImage from '@/assets/mental-health.jpg';
+import caregiverImage from '@/assets/caregiver-training.jpg';
 
 const programs = [
   {
@@ -30,25 +33,28 @@ const programs = [
     icon: Wheat,
     title: 'Agriculture Support',
     description: 'Supporting sustainable farming practices and food security through agricultural training and resources for rural communities.',
-    image: studentsGroup,
+    image: agricultureImage,
     color: 'primary',
   },
   {
     icon: Wrench,
     title: 'Vocational Training',
     description: 'Apprenticeship programs and skills training to help youth and adults build sustainable livelihoods.',
+    image: vocationalImage,
     color: 'secondary',
   },
   {
     icon: Brain,
     title: 'Mental Health & Counseling',
     description: 'Mental health support, drug abuse counseling, and psychosocial services for individuals and families.',
+    image: mentalHealthImage,
     color: 'earth',
   },
   {
     icon: Users,
     title: 'Caregiver Training',
     description: 'Equipping caregivers and community leaders with skills to nurture children into responsible individuals.',
+    image: caregiverImage,
     color: 'primary',
   },
 ];
