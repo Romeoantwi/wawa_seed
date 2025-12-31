@@ -1,7 +1,8 @@
-import { GraduationCap, HeartHandshake, Stethoscope, Brain, Wrench, Users } from 'lucide-react';
+import { GraduationCap, HeartHandshake, Stethoscope, Brain, Wrench, Users, Wheat } from 'lucide-react';
 import educationImage from '@/assets/education-support.jpg';
 import womenImage from '@/assets/women-empowerment.jpg';
 import healthcareImage from '@/assets/healthcare.jpg';
+import studentsGroup from '@/assets/gallery/students-group.jpg';
 
 const programs = [
   {
@@ -26,22 +27,29 @@ const programs = [
     color: 'earth',
   },
   {
+    icon: Wheat,
+    title: 'Agriculture Support',
+    description: 'Supporting sustainable farming practices and food security through agricultural training and resources for rural communities.',
+    image: studentsGroup,
+    color: 'primary',
+  },
+  {
     icon: Wrench,
     title: 'Vocational Training',
     description: 'Apprenticeship programs and skills training to help youth and adults build sustainable livelihoods.',
-    color: 'primary',
+    color: 'secondary',
   },
   {
     icon: Brain,
     title: 'Mental Health & Counseling',
     description: 'Mental health support, drug abuse counseling, and psychosocial services for individuals and families.',
-    color: 'secondary',
+    color: 'earth',
   },
   {
     icon: Users,
     title: 'Caregiver Training',
     description: 'Equipping caregivers and community leaders with skills to nurture children into responsible individuals.',
-    color: 'earth',
+    color: 'primary',
   },
 ];
 
