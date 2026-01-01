@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/wasaf-logo.jpg';
+import DonationDialog from './DonationDialog';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,9 +48,11 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="default" size="default">
-              Donate Now
-            </Button>
+            <DonationDialog>
+              <Button variant="default" size="default">
+                Donate Now
+              </Button>
+            </DonationDialog>
           </div>
 
           {/* Mobile Menu Button */}
@@ -77,9 +80,11 @@ const Header = () => {
                 </a>
               ))}
               <div className="px-4 pt-2">
-                <Button variant="default" className="w-full">
-                  Donate Now
-                </Button>
+                <DonationDialog>
+                  <Button variant="default" className="w-full">
+                    Donate Now
+                  </Button>
+                </DonationDialog>
               </div>
             </div>
           </div>
