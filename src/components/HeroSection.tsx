@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart } from 'lucide-react';
 import heroImage from '@/assets/hero-image.jpg';
+import DonationDialog from './DonationDialog';
 
 const HeroSection = () => {
   return (
@@ -44,13 +45,17 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 animate-fade-up"
             style={{ animationDelay: '0.4s' }}
           >
-            <Button variant="hero" size="lg">
-              <Heart className="mr-2" size={20} />
-              Support Our Cause
-            </Button>
-            <Button variant="heroOutline" size="lg">
-              Learn More
-              <ArrowRight className="ml-2" size={20} />
+            <DonationDialog>
+              <Button variant="hero" size="lg">
+                <Heart className="mr-2" size={20} />
+                Support Our Cause
+              </Button>
+            </DonationDialog>
+            <Button variant="heroOutline" size="lg" asChild>
+              <a href="#about">
+                Learn More
+                <ArrowRight className="ml-2" size={20} />
+              </a>
             </Button>
           </div>
         </div>
