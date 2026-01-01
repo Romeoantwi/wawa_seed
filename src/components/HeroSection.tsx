@@ -29,16 +29,15 @@ const HeroSection = () => {
             className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-up"
             style={{ animationDelay: '0.2s' }}
           >
-            Nurturing Dreams,{' '}
-            <span className="text-secondary">Empowering Africa</span>
+            Wawa Seed Africa Foundation{' '}
+            <span className="text-secondary">(WASAF)</span>
           </h1>
           
           <p 
             className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl leading-relaxed animate-fade-up"
             style={{ animationDelay: '0.3s' }}
           >
-            Wawa Seed Africa Foundation is dedicated to providing hope, support, and 
-            sustainable solutions to vulnerable children, women, and families across Ghana.
+            Through targeted programs and services, WASAF aims to empower parents and caregivers to raise successful children through education, counseling, healthcare, water access, and business development initiatives while fostering sustainable development in the region.
           </p>
 
           <div 
