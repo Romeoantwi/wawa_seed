@@ -34,7 +34,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-20">
           <a href="#" className="flex items-center gap-3">
-            <img src={logo} alt="WASAF Logo" className="h-20 w-auto rounded-full object-cover" />
+            <img src={logo} alt="WASAF Logo" className="h-20 w-auto" />
           </a>
 
           {/* Desktop Navigation */}

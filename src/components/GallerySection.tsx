@@ -50,12 +50,15 @@ const GallerySection = () => {
           <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-4">
             Our Impact
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-6">
-            Gallery
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-4">
+            Educational Trip (Excursion)
           </h2>
+          <h3 className="text-xl md:text-2xl font-semibold text-secondary mb-6">
+            Gallery
+          </h3>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            See the faces of hope and the communities we serve across Ghana. 
-            Every image tells a story of transformation and empowerment.
+            Highlights from our educational excursion where students explored new learning opportunities 
+            and experienced hands-on education outside the classroom.
           </p>
         </div>
 
