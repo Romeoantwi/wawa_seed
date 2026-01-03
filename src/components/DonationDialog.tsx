@@ -91,11 +91,7 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
               </div>
             </div>
             
-            <div className="space-y-2 pl-16">
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Account Name</p>
-                <p className="font-medium text-foreground">K A Amissah Foundation. Inc</p>
-              </div>
+            <div className="pl-16">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wide">Account Number</p>
@@ -116,6 +112,23 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
                   )}
                 </Button>
               </div>
+            </div>
+          </div>
+
+          {/* Check */}
+          <div className="p-4 rounded-lg border border-border bg-background">
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center shrink-0">
+                <DollarSign className="w-6 h-6 text-secondary-foreground" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground">Check</h3>
+                <p className="text-sm text-muted-foreground">Make checks payable to:</p>
+              </div>
+            </div>
+            
+            <div className="pl-16">
+              <p className="font-semibold text-foreground">K A Amissah Foundation, Inc.</p>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-10">
           {/* Logo & About */}
           <div className="md:col-span-2">
-            <img src={logo} alt="WASAF Logo" className="h-24 w-auto mb-4" />
+            <img src={logo} alt="WASAF Logo" className="h-24 w-auto mb-4 brightness-0 invert" />
             <p className="text-primary-foreground/80 leading-relaxed mb-4 max-w-md">
               Wawa Seed Africa Foundation (WASAF) is a community-based organization 
               committed to nurturing dreams and empowering Africa through sustainable 
