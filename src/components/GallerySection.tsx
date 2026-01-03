@@ -13,16 +13,16 @@ import studentsSeated from '@/assets/gallery/students-seated.jpg';
 import studentsLargeGroup from '@/assets/gallery/students-large-group.jpg';
 
 const galleryImages = [
-  { src: studentsLargeGroup, alt: 'WASAF students in a large group photo' },
-  { src: studentsWithStaff, alt: 'WASAF staff with students' },
-  { src: studentsAssembly, alt: 'Students at school assembly' },
-  { src: staffWithStudents, alt: 'Staff member with students' },
-  { src: studentsGroup, alt: 'Group of students in uniform' },
-  { src: studentsWalking, alt: 'Students walking together' },
-  { src: studentBus, alt: 'Student boarding school bus' },
-  { src: studentBoarding, alt: 'Student getting on transport' },
-  { src: studentSmiling, alt: 'Happy student smiling' },
-  { src: studentsSeated, alt: 'Students seated together' },
+  { src: studentsLargeGroup, alt: 'Students gathered for an educational excursion group photo' },
+  { src: studentsWithStaff, alt: 'WASAF staff with students during educational trip' },
+  { src: studentsAssembly, alt: 'Students assembling before the excursion departure' },
+  { src: staffWithStudents, alt: 'Staff member guiding students on educational trip' },
+  { src: studentsGroup, alt: 'Students in uniform ready for excursion' },
+  { src: studentsWalking, alt: 'Students walking together during educational visit' },
+  { src: studentBus, alt: 'Student boarding the excursion bus' },
+  { src: studentBoarding, alt: 'Students getting on transport for educational trip' },
+  { src: studentSmiling, alt: 'Happy student enjoying the educational excursion' },
+  { src: studentsSeated, alt: 'Students seated together during the trip' },
 ];
 
 const GallerySection = () => {
