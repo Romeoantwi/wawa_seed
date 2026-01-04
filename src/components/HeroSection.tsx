@@ -99,7 +99,7 @@ const HeroSection = () => {
                 <img
                   src={slide.image}
                   alt={slide.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
                 {/* Caption overlay */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
