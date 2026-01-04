@@ -11,7 +11,6 @@ import studentBoarding from '@/assets/gallery/student-boarding.jpg';
 import studentSmiling from '@/assets/gallery/student-smiling.jpg';
 import studentsSeated from '@/assets/gallery/students-seated.jpg';
 import studentsLargeGroup from '@/assets/gallery/students-large-group.jpg';
-import vocationalTraining from '@/assets/vocational-training.jpg';
 
 const galleryImages = [
   { src: studentsLargeGroup, alt: 'Students gathered for an educational excursion group photo' },
@@ -24,7 +23,6 @@ const galleryImages = [
   { src: studentBoarding, alt: 'Students getting on transport for educational trip' },
   { src: studentSmiling, alt: 'Happy student enjoying the educational excursion' },
   { src: studentsSeated, alt: 'Students seated together during the trip' },
-  { src: vocationalTraining, alt: 'Youth learning vocational skills in tailoring workshop' },
 ];
 
 const GallerySection = () => {

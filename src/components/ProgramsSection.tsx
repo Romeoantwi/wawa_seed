@@ -40,7 +40,7 @@ const programs = [
     icon: Wrench,
     title: 'Vocational Training',
     description: 'Apprenticeship programs and skills training to help youth and adults build sustainable livelihoods.',
-    image: null,
+    image: vocationalImage,
     color: 'secondary',
   },
   {
