@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Heart } from 'lucide-react';
+import { ArrowRight, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import DonationDialog from './DonationDialog';
 
 // Import hero slideshow images
@@ -61,109 +61,104 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const goToPrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Slideshow */}
-      <div className="absolute inset-0">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <img
-              src={slide.image}
-              alt={slide.alt}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-        <div className="absolute inset-0 bg-gradient-hero" />
-      </div>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
-        {heroSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? 'bg-secondary w-8' 
-                : 'bg-primary-foreground/50 hover:bg-primary-foreground/70'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Current Slide Caption */}
-      <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-20">
-        <span className="inline-block px-6 py-2 bg-secondary/90 backdrop-blur-sm rounded-full text-secondary-foreground text-sm font-semibold tracking-wide">
-          {heroSlides[currentSlide].caption}
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-32 md:py-40">
-        <div className="max-w-3xl">
-          <span 
-            className="inline-block px-4 py-2 bg-secondary/20 backdrop-blur-sm rounded-full text-primary-foreground text-sm font-medium mb-6 animate-fade-up"
-            style={{ animationDelay: '0.1s' }}
-          >
+    <section className="bg-gradient-to-b from-primary/5 to-background pt-24 pb-16">
+      <div className="container mx-auto px-4">
+        {/* Header Text */}
+        <div className="text-center mb-10">
+          <span className="inline-block px-4 py-2 bg-secondary/20 rounded-full text-secondary text-sm font-medium mb-4 animate-fade-up">
             Since 2020 • Empowering Communities in Ghana
           </span>
-          
-          <h1 
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-up"
-            style={{ animationDelay: '0.2s' }}
-          >
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
             Wawa Seed Africa Foundation{' '}
-            <span className="text-secondary">(WASAF)</span>
+            <span className="text-primary">(WASAF)</span>
           </h1>
-          
-          <p 
-            className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl leading-relaxed animate-fade-up"
-            style={{ animationDelay: '0.3s' }}
-          >
-            Through targeted programs and services, WASAF aims to empower parents and caregivers to raise successful children through education, counseling, healthcare, water access, and business development initiatives while fostering sustainable development in the region.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            Empowering parents and caregivers to raise successful children through education, healthcare, and community development.
           </p>
+        </div>
 
-          <div 
-            className="flex flex-col sm:flex-row gap-4 animate-fade-up"
-            style={{ animationDelay: '0.4s' }}
-          >
-            <DonationDialog>
-              <Button variant="hero" size="lg">
-                <Heart className="mr-2" size={20} />
-                Support Our Cause
-              </Button>
-            </DonationDialog>
-            <Button variant="heroOutline" size="lg" asChild>
-              <a href="#about">
-                Learn More
-                <ArrowRight className="ml-2" size={20} />
-              </a>
-            </Button>
+        {/* Main Slideshow - Prominently Displayed */}
+        <div className="relative max-w-5xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+          <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-elevated">
+            {heroSlides.map((slide, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-700 ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                />
+                {/* Caption overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <span className="inline-block px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-semibold">
+                    {slide.caption}
+                  </span>
+                </div>
+              </div>
+            ))}
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors shadow-lg"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors shadow-lg"
+              aria-label="Next slide"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
+          {/* Slide Indicators */}
+          <div className="flex justify-center gap-2 mt-4">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'bg-primary w-8' 
+                    : 'bg-muted w-2 hover:bg-muted-foreground/50'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Decorative Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            className="fill-background"
-          />
-        </svg>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          <DonationDialog>
+            <Button variant="default" size="lg">
+              <Heart className="mr-2" size={20} />
+              Support Our Cause
+            </Button>
+          </DonationDialog>
+          <Button variant="outline" size="lg" asChild>
+            <a href="#about">
+              Learn More
+              <ArrowRight className="ml-2" size={20} />
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   );
