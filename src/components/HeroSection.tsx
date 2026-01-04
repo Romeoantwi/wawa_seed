@@ -1,19 +1,108 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart } from 'lucide-react';
-import heroImage from '@/assets/hero-image.jpg';
 import DonationDialog from './DonationDialog';
 
+// Import hero slideshow images
+import studentsSmiling from '@/assets/hero/students-smiling.jpg';
+import sewingTraining from '@/assets/hero/sewing-training.jpg';
+import cookingClass from '@/assets/hero/cooking-class.jpg';
+import tailoringWorkshop from '@/assets/hero/tailoring-workshop.jpg';
+import outdoorActivity from '@/assets/hero/outdoor-activity.jpg';
+import youthTraining from '@/assets/hero/youth-training.jpg';
+import studentsGathering from '@/assets/hero/students-gathering.jpg';
+
+const heroSlides = [
+  {
+    image: studentsSmiling,
+    caption: "Education for Every Child",
+    alt: "Happy students in school uniforms"
+  },
+  {
+    image: sewingTraining,
+    caption: "Skills Training & Empowerment",
+    alt: "Young girl learning sewing skills"
+  },
+  {
+    image: tailoringWorkshop,
+    caption: "Vocational Training Programs",
+    alt: "Women in tailoring workshop"
+  },
+  {
+    image: cookingClass,
+    caption: "Building Brighter Futures",
+    alt: "Youth in cooking training class"
+  },
+  {
+    image: outdoorActivity,
+    caption: "Community Development",
+    alt: "Children in outdoor activities with instructor"
+  },
+  {
+    image: youthTraining,
+    caption: "Empowering Young Women",
+    alt: "Youth in training program"
+  },
+  {
+    image: studentsGathering,
+    caption: "Transforming Lives Together",
+    alt: "Students gathering for community event"
+  }
+];
+
 const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Slideshow */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Children learning in Ghana"
-          className="w-full h-full object-cover"
-        />
+        {heroSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
         <div className="absolute inset-0 bg-gradient-hero" />
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+        {heroSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'bg-secondary w-8' 
+                : 'bg-primary-foreground/50 hover:bg-primary-foreground/70'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Current Slide Caption */}
+      <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-20">
+        <span className="inline-block px-6 py-2 bg-secondary/90 backdrop-blur-sm rounded-full text-secondary-foreground text-sm font-semibold tracking-wide">
+          {heroSlides[currentSlide].caption}
+        </span>
       </div>
 
       {/* Content */}
