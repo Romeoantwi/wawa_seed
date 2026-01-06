@@ -21,9 +21,9 @@
     --earth: 25 45% 35%;
     --earth-light: 35 40% 92%;
     
-    /* Background - light green */
-    --background: 120 30% 95%;
-    --foreground: 25 25% 15%;
+    /* Background - matching primary green */
+    --background: 122 55% 45%;
+    --foreground: 0 0% 100%;
 
     /* Cards with slight warmth */
     --card: 40 25% 99%;
