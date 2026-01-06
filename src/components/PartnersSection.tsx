@@ -1,11 +1,13 @@
 import { Handshake } from 'lucide-react';
+import graceMovementLogo from '@/assets/partners/grace-movement-logo.jpg';
+import interfaithTourismLogo from '@/assets/partners/interfaith-tourism-logo.jpg';
 
 const PartnersSection = () => {
   const partners = [
-    { name: 'The Grace Movement' },
-    { name: 'Adea' },
-    { name: 'Interfaith Tourism' },
-    { name: 'Image Ghana' },
+    { name: 'The Grace Movement', logo: graceMovementLogo },
+    { name: 'Adea', logo: null },
+    { name: 'Interfaith Tourism', logo: interfaithTourismLogo },
+    { name: 'Image Ghana', logo: null },
   ];
 
   return (
@@ -25,8 +27,15 @@ const PartnersSection = () => {
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="bg-muted/50 px-8 py-4 rounded-lg border border-border hover:border-primary/30 hover:bg-muted transition-all duration-300"
+              className="bg-muted/50 px-6 py-4 rounded-lg border border-border hover:border-primary/30 hover:bg-muted transition-all duration-300 flex items-center gap-3"
             >
+              {partner.logo && (
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`} 
+                  className="w-10 h-10 object-contain rounded"
+                />
+              )}
               <span className="font-display text-lg font-semibold text-foreground">
                 {partner.name}
               </span>
