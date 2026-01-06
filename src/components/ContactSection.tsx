@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -9,15 +10,39 @@ const ContactSection = () => {
     email: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. We'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. We'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,8 +90,8 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                  <a href="mailto:info@wasaf.org" className="text-muted-foreground hover:text-primary transition-colors">
-                    info@wawaseedafrica.org
+                  <a href="mailto:lucysaki99@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    lucysaki99@gmail.com
                   </a>
                 </div>
               </div>
@@ -131,9 +156,13 @@ const ContactSection = () => {
                 />
               </div>
 
-              <Button type="submit" variant="default" size="lg" className="w-full">
-                <Send size={18} className="mr-2" />
-                Send Message
+              <Button type="submit" variant="default" size="lg" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <Loader2 size={18} className="mr-2 animate-spin" />
+                ) : (
+                  <Send size={18} className="mr-2" />
+                )}
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </div>
           </form>
