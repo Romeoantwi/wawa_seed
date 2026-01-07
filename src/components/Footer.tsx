@@ -16,9 +16,14 @@ const Footer = () => {
               committed to nurturing dreams and empowering Africa through sustainable 
               development and compassionate service.
             </p>
-            <p className="text-primary-foreground/60 text-sm">
+            <p className="text-primary-foreground/60 text-sm mb-2">
               Registered NGO in Ghana since 2020
             </p>
+            <div className="text-primary-foreground/70 text-sm">
+              <p className="font-semibold text-primary-foreground/80">US Location:</p>
+              <p>56 Burnett Street, Unit 2</p>
+              <p>Boston, MA 02130</p>
+            </div>
           </div>
 
           {/* Quick Links */}
