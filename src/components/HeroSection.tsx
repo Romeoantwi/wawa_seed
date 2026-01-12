@@ -70,96 +70,94 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-primary/5 to-background pt-24 pb-16">
-      <div className="container mx-auto px-4">
-        {/* Header Text */}
-        <div className="text-center mb-10">
-          <span className="inline-block px-4 py-2 bg-secondary/20 rounded-full text-secondary text-sm font-medium mb-4 animate-fade-up">
-            Since 2020 • Empowering Communities in Ghana
-          </span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            Wawa Seed Africa Foundation{' '}
-            <span className="text-primary">(WASAF)</span>
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Empowering parents and caregivers to raise successful children through education, healthcare, and community development.
-          </p>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Slideshow */}
+      {heroSlides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            className="w-full h-full object-cover object-top"
+          />
         </div>
+      ))}
 
-        {/* Main Slideshow - Prominently Displayed */}
-        <div className="relative max-w-5xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-          <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-elevated">
-            {heroSlides.map((slide, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <img
-                  src={slide.image}
-                  alt={slide.alt}
-                  className="w-full h-full object-cover object-top"
-                />
-                {/* Caption overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <span className="inline-block px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-semibold">
-                    {slide.caption}
-                  </span>
-                </div>
-              </div>
-            ))}
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/50" />
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors shadow-lg"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors shadow-lg"
-              aria-label="Next slide"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <span className="inline-block px-4 py-2 bg-secondary/90 rounded-full text-secondary-foreground text-sm font-medium mb-6 animate-fade-up">
+          Since 2020 • Empowering Communities in Ghana
+        </span>
+        
+        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          Wawa Seed Africa Foundation{' '}
+          <span className="text-secondary">(WASAF)</span>
+        </h1>
+        
+        <p className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto mb-4 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          Empowering parents and caregivers to raise successful children through education, healthcare, and community development.
+        </p>
 
-          {/* Slide Indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'bg-primary w-8' 
-                    : 'bg-muted w-2 hover:bg-muted-foreground/50'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+        {/* Current slide caption */}
+        <p className="text-secondary font-semibold text-lg mb-8 animate-fade-up" style={{ animationDelay: '0.25s' }}>
+          {heroSlides[currentSlide].caption}
+        </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up" style={{ animationDelay: '0.4s' }}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-up" style={{ animationDelay: '0.3s' }}>
           <DonationDialog>
-            <Button variant="default" size="lg">
+            <Button variant="default" size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
               <Heart className="mr-2" size={20} />
               Support Our Cause
             </Button>
           </DonationDialog>
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/20" asChild>
             <a href="#about">
               Learn More
               <ArrowRight className="ml-2" size={20} />
             </a>
           </Button>
         </div>
+
+        {/* Slide Indicators */}
+        <div className="flex justify-center gap-2 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide 
+                  ? 'bg-secondary w-8' 
+                  : 'bg-white/50 w-2 hover:bg-white/70'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={28} />
+      </button>
+      <button
+        onClick={goToNext}
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+        aria-label="Next slide"
+      >
+        <ChevronRight size={28} />
+      </button>
     </section>
   );
 };
