@@ -16,37 +16,44 @@ const heroSlides = [
   {
     image: studentsSmiling,
     caption: "Education for Every Child",
-    alt: "Happy students in school uniforms"
+    alt: "Happy students in school uniforms",
+    position: "object-top"
   },
   {
     image: sewingTraining,
     caption: "Skills Training & Empowerment",
-    alt: "Young girl learning sewing skills"
+    alt: "Young girl learning sewing skills",
+    position: "object-center"
   },
   {
     image: tailoringWorkshop,
     caption: "Vocational Training Programs",
-    alt: "Women in tailoring workshop"
+    alt: "Women in tailoring workshop",
+    position: "object-center"
   },
   {
     image: cookingClass,
     caption: "Building Brighter Futures",
-    alt: "Youth in cooking training class"
+    alt: "Youth in cooking training class",
+    position: "object-center"
   },
   {
     image: outdoorActivity,
     caption: "Community Development",
-    alt: "Children in outdoor activities with instructor"
+    alt: "Children in outdoor activities with instructor",
+    position: "object-center"
   },
   {
     image: youthTraining,
     caption: "Empowering Young Women",
-    alt: "Youth in training program"
+    alt: "Youth in training program",
+    position: "object-top"
   },
   {
     image: studentsGathering,
     caption: "Transforming Lives Together",
-    alt: "Students gathering for community event"
+    alt: "Students gathering for community event",
+    position: "object-center"
   }
 ];
 
@@ -91,7 +98,7 @@ const HeroSection = () => {
           <img
             src={slide.image}
             alt={slide.alt}
-            className="w-full h-full object-cover object-top"
+            className={`w-full h-full object-cover ${slide.position}`}
           />
         </div>
       ))}
