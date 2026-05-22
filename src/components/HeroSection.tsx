@@ -47,7 +47,7 @@ const heroSlides = [
     image: youthTraining,
     caption: "Empowering Young Women",
     alt: "Youth in training program",
-    position: "object-center"
+    position: "object-[50%_15%]"
   },
   {
     image: studentsGathering,
