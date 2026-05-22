@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import studentsWithStaff from '@/assets/gallery/students-with-staff.jpg';
@@ -30,18 +30,29 @@ const GallerySection = () => {
 
   const openLightbox = (index: number) => setSelectedIndex(index);
   const closeLightbox = () => setSelectedIndex(null);
-  
+
   const goToPrev = () => {
     if (selectedIndex !== null) {
       setSelectedIndex(selectedIndex === 0 ? galleryImages.length - 1 : selectedIndex - 1);
     }
   };
-  
+
   const goToNext = () => {
     if (selectedIndex !== null) {
       setSelectedIndex(selectedIndex === galleryImages.length - 1 ? 0 : selectedIndex + 1);
     }
   };
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') goToPrev();
+      if (e.key === 'ArrowRight') goToNext();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [selectedIndex]);
 
   return (
     <section id="gallery" className="py-20 md:py-28 bg-background">

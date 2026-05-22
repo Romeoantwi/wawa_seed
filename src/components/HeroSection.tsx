@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import DonationDialog from './DonationDialog';
@@ -52,21 +52,30 @@ const heroSlides = [
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const startTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
+  };
 
-    return () => clearInterval(timer);
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, []);
 
   const goToPrevious = () => {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+    startTimer();
   };
 
   const goToNext = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    startTimer();
   };
 
   return (
@@ -131,7 +140,7 @@ const HeroSection = () => {
           {heroSlides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentSlide(index)}
+              onClick={() => { setCurrentSlide(index); startTimer(); }}
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === currentSlide 
                   ? 'bg-secondary w-8' 

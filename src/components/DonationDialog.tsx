@@ -61,23 +61,34 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
           </a>
 
           {/* Zelle */}
-          <button
-            onClick={() => copyToClipboard('lucysaki99@gmail.com', 'Zelle email')}
-            className="w-full flex items-center gap-4 p-4 rounded-lg border border-border bg-background hover:bg-muted/50 transition-colors text-left"
-          >
-            <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center shrink-0">
-              <Mail className="w-6 h-6 text-white" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-foreground">Zelle</h3>
-              <p className="text-primary font-mono text-sm">lucysaki99@gmail.com</p>
-            </div>
-            {copiedField === 'Zelle email' ? (
-              <Check className="w-5 h-5 text-green-500" />
-            ) : (
-              <span className="text-xs text-muted-foreground">Click to copy</span>
-            )}
-          </button>
+          <div className="rounded-lg border border-border bg-background overflow-hidden">
+            <button
+              onClick={() => copyToClipboard('lucysaki99@gmail.com', 'Zelle email')}
+              className="w-full flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors text-left"
+            >
+              <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center shrink-0">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-foreground">Zelle</h3>
+                <p className="text-primary font-mono text-sm">lucysaki99@gmail.com</p>
+              </div>
+              {copiedField === 'Zelle email' ? (
+                <Check className="w-5 h-5 text-green-500" />
+              ) : (
+                <span className="text-xs text-muted-foreground">Click to copy email</span>
+              )}
+            </button>
+            <a
+              href="https://www.zellepay.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1 py-2 border-t border-border text-xs text-muted-foreground hover:text-primary transition-colors"
+            >
+              Open Zelle website
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
 
           {/* Bank Transfer */}
           <div className="p-4 rounded-lg border border-border bg-background">

@@ -19,6 +19,7 @@ const Header = () => {
   const navLinks = [
     { href: '#about', label: 'About Us' },
     { href: '#programs', label: 'Programs' },
+    { href: '#gallery', label: 'Gallery' },
     { href: '#impact', label: 'Our Impact' },
     { href: '#contact', label: 'Contact' },
   ];
@@ -60,6 +61,7 @@ const Header = () => {
             className="md:hidden text-foreground p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

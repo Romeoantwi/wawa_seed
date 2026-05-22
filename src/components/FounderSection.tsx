@@ -51,7 +51,7 @@ const FounderSection = () => {
                   <span className="text-sm text-muted-foreground">Lives Impacted</span>
                 </div>
                 <div className="text-center px-4 border-l border-border">
-                  <span className="block font-display text-2xl font-bold text-primary">6+</span>
+                  <span className="block font-display text-2xl font-bold text-primary">7+</span>
                   <span className="text-sm text-muted-foreground">Programs</span>
                 </div>
               </div>

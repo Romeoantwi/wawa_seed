@@ -1,4 +1,4 @@
-import { Heart } from 'lucide-react';
+import { Heart, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import logo from '@/assets/wasaf-logo.jpg';
 
 const Footer = () => {
@@ -10,7 +10,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-10">
           {/* Logo & About */}
           <div className="md:col-span-2">
-            <img src={logo} alt="WASAF Logo" className="h-24 w-auto mb-4" />
+            <div className="bg-white rounded-xl p-3 inline-block mb-4">
+              <img src={logo} alt="WASAF Logo" className="h-20 w-auto" />
+            </div>
             <p className="text-primary-foreground/80 leading-relaxed mb-4 max-w-md">
               Wawa Seed Africa Foundation (WASAF) is a community-based organization 
               committed to nurturing dreams and empowering Africa through sustainable 
@@ -73,6 +75,20 @@ const Footer = () => {
             <p className="text-primary-foreground/60 text-sm">
               © {currentYear} Wawa Seed Africa Foundation. All rights reserved.
             </p>
+            <div className="flex items-center gap-4">
+              <a href="https://facebook.com/WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+                <Facebook size={18} />
+              </a>
+              <a href="https://instagram.com/WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+                <Instagram size={18} />
+              </a>
+              <a href="https://twitter.com/WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+                <Twitter size={18} />
+              </a>
+              <a href="https://youtube.com/@WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+                <Youtube size={18} />
+              </a>
+            </div>
             <p className="text-primary-foreground/60 text-sm flex items-center gap-2">
               Made with <Heart size={14} className="text-secondary" /> in Ghana
             </p>
