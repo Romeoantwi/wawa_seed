@@ -23,7 +23,7 @@ const heroSlides = [
     image: sewingTraining,
     caption: "Skills Training & Empowerment",
     alt: "Young girl learning sewing skills",
-    position: "object-center"
+    position: "object-top"
   },
   {
     image: tailoringWorkshop,
@@ -35,7 +35,7 @@ const heroSlides = [
     image: cookingClass,
     caption: "Building Brighter Futures",
     alt: "Youth in cooking training class",
-    position: "object-center"
+    position: "object-top"
   },
   {
     image: outdoorActivity,
@@ -47,7 +47,7 @@ const heroSlides = [
     image: youthTraining,
     caption: "Empowering Young Women",
     alt: "Youth in training program",
-    position: "object-top"
+    position: "object-center"
   },
   {
     image: studentsGathering,
