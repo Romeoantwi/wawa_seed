@@ -35,7 +35,13 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-20">
           <a href="#" className="flex items-center gap-3">
-            <img src={logo} alt="WASAF Logo" className="h-20 w-auto mix-blend-multiply" />
+            {isScrolled ? (
+              <img src={logo} alt="WASAF Logo" className="h-16 w-auto mix-blend-multiply" />
+            ) : (
+              <div className="bg-white/90 rounded-xl px-3 py-1 shadow-sm">
+                <img src={logo} alt="WASAF Logo" className="h-12 w-auto" />
+              </div>
+            )}
           </a>
 
           {/* Desktop Navigation */}
