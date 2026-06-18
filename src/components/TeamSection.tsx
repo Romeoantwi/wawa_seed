@@ -1,5 +1,6 @@
 import melindaImage from '@/assets/team/melinder-siner.jpg';
 import lilyImage from '@/assets/team/lily-saki.jpg';
+import founderPresidentImage from '@/assets/team/founder-president.jpg';
 
 const teamMembers = [
   {
@@ -7,8 +8,6 @@ const teamMembers = [
     role: 'Ordained Minister, Nurse & Board Member',
     badge: 'Board\nMember',
     image: melindaImage,
-    alt: 'Melinder Siner - Board Member of WASAF',
-
     alt: 'Melinder Siner - Board Member of WASAF',
     bio: [
       "Melinder Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
@@ -24,6 +23,17 @@ const teamMembers = [
     bio: [
       'Lily Saki is an architect with a Master of Architecture from the Harvard Graduate School of Design and a Bachelor of Science in Architecture from Wentworth Institute of Technology. Her interests center on sustainable design, climate resilience, and creating meaningful impact through the built environment.',
       'She currently serves as Program Director at Wawa Seed Africa Foundation, where she leads programs focused on education, community development, and youth empowerment across Africa.',
+    ],
+  },
+  {
+    name: 'Lucy Asantewaa Saki',
+    role: 'President',
+    badge: 'President',
+    image: founderPresidentImage,
+    alt: 'Lucy Asantewaa Saki - President of WASAF',
+    bio: [
+      'Driven by a deep passion for community empowerment, Lucy Asantewaa Saki founded Wawa Seed Africa Foundation in 2020 during the challenging times of the COVID-19 pandemic. Her vision was to create lasting change for vulnerable children, women, and families across Ghana through education, healthcare, and sustainable development programs.',
+      'Under her leadership, WASAF has grown to impact thousands of lives, providing educational support, vocational training, healthcare services, and community development initiatives that transform communities from within.',
     ],
   },
 ];
