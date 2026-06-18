@@ -6,7 +6,7 @@ const teamMembers = [
     name: 'Melinder Siner',
     role: 'Ordained Minister, Nurse & Board Member',
     badge: 'Board\nMember',
-    image: melindaImage.url,
+    image: photo_2026-06-18_14-05-24.jpg,
     alt: 'Melinder Siner - Board Member of WASAF',
     bio: [
       "Melinder Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
