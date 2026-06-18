@@ -1,12 +1,12 @@
-import melindaImage from '@/assets/team/melinda-siner.jpg.asset.json';
-import lilyImage from '@/assets/team/lily-saki.jpg.asset.json';
+import melindaImage from '@/assets/team/melinder-siner.jpg';
+import lilyImage from '@/assets/team/lily-saki.jpg';
 
 const teamMembers = [
   {
     name: 'Melinder Siner',
     role: 'Ordained Minister, Nurse & Board Member',
     badge: 'Board\nMember',
-    image: melindaImage.url,
+    image: melindaImage,
     alt: 'Melinder Siner - Board Member of WASAF',
     bio: [
       "Melinder Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
@@ -17,7 +17,7 @@ const teamMembers = [
     name: 'Lily Saki',
     role: 'Program Director',
     badge: 'Program\nDirector',
-    image: lilyImage.url,
+    image: lilyImage,
     alt: 'Lily Saki - Program Director of WASAF',
     bio: [
       'Lily Saki is an architect with a Master of Architecture from the Harvard Graduate School of Design and a Bachelor of Science in Architecture from Wentworth Institute of Technology. Her interests center on sustainable design, climate resilience, and creating meaningful impact through the built environment.',
