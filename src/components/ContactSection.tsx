@@ -80,7 +80,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Location</h4>
-                  <p className="text-muted-foreground">Ghana, West Africa</p>
+                  <p className="text-muted-foreground">56 Burnett St. Unit 2, Boston MA 02130</p>
                 </div>
               </div>
 
@@ -102,7 +102,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                  <a href="tel:+233545537096" className="text-muted-foreground hover:text-primary transition-colors">+233 54 553 7096</a>
+                  <a href="tel:+18574130329" className="text-muted-foreground hover:text-primary transition-colors">857-413-0329</a>
                 </div>
               </div>
             </div>

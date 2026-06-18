@@ -23,7 +23,7 @@ const Footer = () => {
             </p>
             <div className="text-primary-foreground/70 text-sm">
               <p className="font-semibold text-primary-foreground/80">US Location:</p>
-              <p>56 Burnett Street, Unit 2</p>
+              <p>56 Burnett St. Unit 2</p>
               <p>Boston, MA 02130</p>
             </div>
           </div>
