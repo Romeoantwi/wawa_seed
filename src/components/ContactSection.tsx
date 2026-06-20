@@ -80,7 +80,8 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Location</h4>
-                  <p className="text-muted-foreground">56 Burnett St. Unit 2, Boston MA 02130</p>
+                  <p className="text-muted-foreground">Ghana: Lungni Jakpado</p>
+                  <p className="text-muted-foreground">US: 56 Burnett St. Unit 2, Boston MA 02130</p>
                 </div>
               </div>
 

@@ -4,8 +4,8 @@ import interfaithTourismLogo from '@/assets/partners/interfaith-tourism-logo.jpg
 
 const PartnersSection = () => {
   const partners = [
-    { name: 'The Grace Movement', logo: graceMovementLogo },
-    { name: 'Adea', logo: null },
+    { name: 'The Grace Movement USA', logo: graceMovementLogo },
+    { name: 'ADEA', logo: null },
     { name: 'Interfaith Tourism', logo: interfaithTourismLogo },
     { name: 'Image Ghana', logo: null },
   ];
@@ -22,6 +22,10 @@ const PartnersSection = () => {
             Working Together for Change
           </h2>
         </div>
+
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-6">
+          Our collaboration with The Grace Movement USA has helped strengthen and scale our programs, extending our reach to more communities in need. ADEA has helped us build our capacity in training and peer training support.
+        </p>
 
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
           {partners.map((partner, index) => (

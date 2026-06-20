@@ -15,14 +15,14 @@ const teamMembers = [
     ],
   },
   {
-    name: 'Melinder Siner',
+    name: 'Melinda Siner',
     role: 'Ordained Minister, Nurse & Board Member',
     badge: 'Board\nMember',
     image: melindaImage,
-    alt: 'Melinder Siner - Board Member of WASAF',
+    alt: 'Melinda Siner - Board Member of WASAF',
     bio: [
-      "Melinder Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
-      "Deeply involved in women's ministry since 2016, Melinder expanded her global outreach in 2024 through the Wawa Seed Africa Foundation. She was officially ordained by the National Association of Christian Ministers in April 2026 and continues to dedicate her life to sharing the Gospel and serving communities.",
+      "Melinda Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
+      "Deeply involved in women's ministry since 2016, Melinda expanded her global outreach in 2024 through the Wawa Seed Africa Foundation. She was officially ordained by the National Association of Christian Ministers in April 2026 and continues to dedicate her life to sharing the Gospel and serving communities.",
     ],
   },
   {
