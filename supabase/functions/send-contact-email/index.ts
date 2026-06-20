@@ -39,7 +39,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email to WASAF organization
     const emailResponse = await resend.emails.send({
-      from: "WASAF Contact Form <onboarding@resend.dev>",
+      from: "WASAF Contact Form <contact@wawaseedafricafoundation.org>",
       to: ["lucysaki99@gmail.com"],
       subject: `New Contact Message from ${name}`,
       html: `
