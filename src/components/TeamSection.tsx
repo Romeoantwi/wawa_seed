@@ -66,38 +66,46 @@ const TeamSection = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto space-y-10">
-          {teamMembers.map((member, idx) => (
+        <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3 max-w-7xl mx-auto">
+          {teamMembers.map((member) => (
             <div
               key={member.name}
-              className={`grid md:grid-cols-2 gap-10 items-center bg-card rounded-2xl p-8 md:p-12 shadow-card ${
-                idx % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''
-              }`}
+              className="group relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              <div className="relative">
-                <div className="relative aspect-[3/4] max-w-sm mx-auto">
-                  <img
-                    src={member.image}
-                    alt={member.alt}
-                    className="w-full h-full object-cover rounded-2xl shadow-elevated"
-                  />
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-secondary-foreground font-display font-bold text-center text-xs leading-tight whitespace-pre-line">
-                      {member.badge}
-                    </span>
+              <div className="relative overflow-hidden">
+                <img
+                  src={member.image}
+                  alt={member.alt}
+                  className="h-96 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center p-6 text-white text-center">
+                  <div>
+                    <h3 className="font-display text-2xl font-bold mb-2">{member.name}</h3>
+                    <p className="text-primary font-medium mb-4">{member.role}</p>
+                    <div className="space-y-3 text-sm leading-relaxed text-white/90">
+                      {member.bio.map((paragraph, idx) => (
+                        <p key={idx}>{paragraph}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="text-center md:text-left">
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-primary font-medium mb-4">{member.role}</p>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  {member.bio.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
+              <div className="p-6">
+                <div className="flex flex-col gap-3 text-center md:text-left">
+                  <div>
+                    <h3 className="font-display text-xl font-bold text-foreground">{member.name}</h3>
+                    <p className="text-primary font-medium">{member.role}</p>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 md:line-clamp-4">
+                    {member.bio[0]}
+                  </p>
+                  <p className="text-muted-foreground text-sm leading-relaxed hidden md:block">
+                    {member.bio[1]}
+                  </p>
+                  <span className="inline-flex items-center justify-center rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary w-fit mx-auto md:mx-0">
+                    {member.badge}
+                  </span>
                 </div>
               </div>
             </div>
