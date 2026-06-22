@@ -1,6 +1,7 @@
 import melindaImage from '@/assets/team/melinder-siner.jpg';
 import lilyImage from '@/assets/team/lily-saki.jpg';
 import founderPresidentImage from '@/assets/team/founder-president.jpg';
+import revAlfredImage from '@/assets/team/rev-alfred-arthur.jpg';
 
 const teamMembers = [
   {
@@ -34,6 +35,17 @@ const teamMembers = [
     bio: [
       'Lily Saki is an architect with a Master of Architecture from the Harvard Graduate School of Design and a Bachelor of Science in Architecture from Wentworth Institute of Technology. Her interests center on sustainable design, climate resilience, and creating meaningful impact through the built environment.',
       'She currently serves as Program Director at Wawa Seed Africa Foundation, where she leads programs focused on education, community development, and youth empowerment across Africa.',
+    ],
+  },
+  {
+    name: 'Rev Alfred Arthur',
+    role: 'Secretary',
+    badge: 'Secretary',
+    image: revAlfredImage,
+    alt: 'Rev Alfred Arthur - Secretary of WASAF',
+    bio: [
+      'Rev. Alfred Arthur holds a Bachelor’s degree in Real Estate and a Master’s degree in Information Technology Management. A pastor and community leader with experience in Ghana and the United States, he brings expertise in leadership, organizational development, and community engagement.',
+      'He is passionate about strengthening institutions, building strategic partnerships, and advancing initiatives that create meaningful and lasting impact. His diverse background enables him to provide balanced, innovative, and mission-focused leadership in board service.',
     ],
   },
 ];
