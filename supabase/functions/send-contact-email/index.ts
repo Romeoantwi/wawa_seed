@@ -1,8 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -22,6 +20,20 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+
+    if (!resendApiKey) {
+      return new Response(
+        JSON.stringify({ error: "RESEND_API_KEY is not configured" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const resend = new Resend(resendApiKey);
+
     const { name, email, message }: ContactEmailRequest = await req.json();
 
     console.log("Received contact form submission:", { name, email });
@@ -37,7 +49,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Send email to WASAF organization
+    // Send email to Lucy Saki
     const emailResponse = await resend.emails.send({
       from: "WASAF Contact Form <contact@wawaseedafricafoundation.org>",
       to: ["lucysaki99@gmail.com"],
@@ -49,6 +61,7 @@ const handler = async (req: Request): Promise<Response> => {
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
       `,
+      text: `New Contact Form Submission\n\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       reply_to: email,
     });
 

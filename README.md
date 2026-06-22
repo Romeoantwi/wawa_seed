@@ -32,8 +32,22 @@ cd <YOUR_PROJECT_NAME>
 # Step 3: Install the necessary dependencies.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Create a local environment file from the example.
+cp .env.example .env
+
+# Step 5: Start the development server with auto-reloading and an instant preview.
 npm run dev
+```
+
+### Environment variables
+
+Create a `.env` file with your Supabase and Resend settings. For the contact form, set:
+
+```env
+VITE_SUPABASE_PROJECT_ID="kokmmnkbxhotzgsmxgbv"
+VITE_SUPABASE_PUBLISHABLE_KEY="<YOUR_SUPABASE_PUBLISHABLE_KEY>"
+VITE_SUPABASE_URL="https://kokmmnkbxhotzgsmxgbv.supabase.co"
+RESEND_API_KEY="<YOUR_RESEND_API_KEY>"
 ```
 
 **Edit a file directly in GitHub**

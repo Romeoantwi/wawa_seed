@@ -19,10 +19,13 @@ const ContactSection = () => {
 
     try {
       const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           message: formData.message,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
         },
       });
 
