@@ -70,31 +70,38 @@ const TeamSection = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3 max-w-7xl mx-auto">
-          {teamMembers.map((member) => (
+        <div className="max-w-5xl mx-auto space-y-10">
+          {teamMembers.map((member, idx) => (
             <div
               key={member.name}
-              className="group relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className={`grid md:grid-cols-2 gap-10 items-center bg-card rounded-2xl p-8 md:p-12 shadow-card ${
+                idx % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''
+              }`}
             >
-              <div className="relative h-[360px] overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.alt}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-black/40 blur-2xl" />
-                <div className="absolute inset-x-0 -bottom-6 h-24 rounded-t-[2rem] bg-gradient-to-r from-black/80 via-black/70 to-black/80 transition-all duration-500 group-hover:h-56 p-6 md:p-8">
-                  <div className="flex h-full flex-col justify-between gap-3 text-white">
-                    <div>
-                      <h3 className="font-display text-xl font-bold">{member.name}</h3>
-                      <p className="text-sm text-secondary-200 mt-1">{member.role}</p>
-                    </div>
-                    <div className="opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                      <p className="text-sm leading-relaxed">{member.bio[0]}</p>
-                      <p className="mt-3 text-sm leading-relaxed">{member.bio[1]}</p>
-                    </div>
-                    <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-medium text-white bg-gradient-to-r ${member.gradient}`}>{member.badge}</span>
+              <div className="relative">
+                <div className="relative aspect-[3/4] max-w-sm mx-auto">
+                  <img
+                    src={member.image}
+                    alt={member.alt}
+                    className="w-full h-full object-cover rounded-2xl shadow-elevated"
+                  />
+                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-secondary-foreground font-display font-bold text-center text-xs leading-tight whitespace-pre-line">
+                      {member.badge}
+                    </span>
                   </div>
+                </div>
+              </div>
+
+              <div className="text-center md:text-left">
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-primary font-medium mb-4">{member.role}</p>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  {member.bio.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                 </div>
               </div>
             </div>
