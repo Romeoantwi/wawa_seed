@@ -8,6 +8,7 @@ const teamMembers = [
     name: 'Lucy Asantewaa Saki',
     role: 'President',
     badge: 'President',
+    gradient: 'from-[#3503ad] via-[#f7308c] to-[#ff5a8e]',
     image: founderPresidentImage,
     alt: 'Lucy Asantewaa Saki - President of WASAF',
     bio: [
@@ -19,6 +20,7 @@ const teamMembers = [
     name: 'Melinda Siner',
     role: 'Ordained Minister, Nurse & Board Member',
     badge: 'Board\nMember',
+    gradient: 'from-[#ccff00] via-[#09afff] to-[#0c4dad]',
     image: melindaImage,
     alt: 'Melinda Siner - Board Member of WASAF',
     bio: [
@@ -30,6 +32,7 @@ const teamMembers = [
     name: 'Lily Saki',
     role: 'Program Director',
     badge: 'Program\nDirector',
+    gradient: 'from-[#f97316] via-[#f43f5e] to-[#c026d3]',
     image: lilyImage,
     alt: 'Lily Saki - Program Director of WASAF',
     bio: [
@@ -41,6 +44,7 @@ const teamMembers = [
     name: 'Rev Alfred Arthur',
     role: 'Secretary',
     badge: 'Secretary',
+    gradient: 'from-[#06b6d4] via-[#3b82f6] to-[#6366f1]',
     image: revAlfredImage,
     alt: 'Rev Alfred Arthur - Secretary of WASAF',
     bio: [
@@ -72,40 +76,25 @@ const TeamSection = () => {
               key={member.name}
               className="group relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative h-[360px] overflow-hidden">
                 <img
                   src={member.image}
                   alt={member.alt}
-                  className="h-96 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center p-6 text-white text-center">
-                  <div>
-                    <h3 className="font-display text-2xl font-bold mb-2">{member.name}</h3>
-                    <p className="text-primary font-medium mb-4">{member.role}</p>
-                    <div className="space-y-3 text-sm leading-relaxed text-white/90">
-                      {member.bio.map((paragraph, idx) => (
-                        <p key={idx}>{paragraph}</p>
-                      ))}
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-black/40 blur-2xl" />
+                <div className="absolute inset-x-0 -bottom-6 h-24 rounded-t-[2rem] bg-gradient-to-r from-black/80 via-black/70 to-black/80 transition-all duration-500 group-hover:h-56 p-6 md:p-8">
+                  <div className="flex h-full flex-col justify-between gap-3 text-white">
+                    <div>
+                      <h3 className="font-display text-xl font-bold">{member.name}</h3>
+                      <p className="text-sm text-secondary-200 mt-1">{member.role}</p>
                     </div>
+                    <div className="opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                      <p className="text-sm leading-relaxed">{member.bio[0]}</p>
+                      <p className="mt-3 text-sm leading-relaxed">{member.bio[1]}</p>
+                    </div>
+                    <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-medium text-white bg-gradient-to-r ${member.gradient}`}>{member.badge}</span>
                   </div>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-col gap-3 text-center md:text-left">
-                  <div>
-                    <h3 className="font-display text-xl font-bold text-foreground">{member.name}</h3>
-                    <p className="text-primary font-medium">{member.role}</p>
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 md:line-clamp-4">
-                    {member.bio[0]}
-                  </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed hidden md:block">
-                    {member.bio[1]}
-                  </p>
-                  <span className="inline-flex items-center justify-center rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary w-fit mx-auto md:mx-0">
-                    {member.badge}
-                  </span>
                 </div>
               </div>
             </div>
