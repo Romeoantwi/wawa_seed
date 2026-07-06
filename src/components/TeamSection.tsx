@@ -2,7 +2,7 @@ import melindaImage from '@/assets/team/melinder-siner.jpg';
 import lilyImage from '@/assets/team/lily-saki.jpg';
 import founderPresidentImage from '@/assets/team/founder-president.jpg';
 import revAlfredImage from '@/assets/team/rev-alfred-arthur.jpg';
-import albertPaitooImage from '@/assets/team/albert-paitoo.jpg.asset.json';
+const albertPaitooImage = { url: '/assets/albert-paitoo.jpg' };
 
 const teamMembers = [
   {
