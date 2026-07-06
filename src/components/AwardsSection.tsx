@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import isaacSakiAwardLogo from '@/assets/isaac-saki-award-logo.jpg.asset.json';
 
 const AwardsSection = () => {
   return (
@@ -17,6 +18,14 @@ const AwardsSection = () => {
             celebrates resilience, commitment to learning, and the potential of
             young people to overcome adversity.
           </p>
+        </div>
+
+        <div className="flex justify-center my-10">
+          <img
+            src={isaacSakiAwardLogo.url}
+            alt="Isaac Saki Award - Honoring Excellence"
+            className="w-48 h-48 md:w-64 md:h-64 object-contain rounded-full shadow-elevated"
+          />
         </div>
 
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-start">
