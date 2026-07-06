@@ -2,6 +2,7 @@ import melindaImage from '@/assets/team/melinder-siner.jpg';
 import lilyImage from '@/assets/team/lily-saki.jpg';
 import founderPresidentImage from '@/assets/team/founder-president.jpg';
 import revAlfredImage from '@/assets/team/rev-alfred-arthur.jpg';
+import albertPaitooImage from '@/assets/team/albert-paitoo.jpg.asset.json';
 
 const teamMembers = [
   {
@@ -50,6 +51,18 @@ const teamMembers = [
     bio: [
       'Rev. Alfred Arthur holds a Bachelor’s degree in Real Estate and a Master’s degree in Information Technology Management. A pastor and community leader with experience in Ghana and the United States, he brings expertise in leadership, organizational development, and community engagement.',
       'He is passionate about strengthening institutions, building strategic partnerships, and advancing initiatives that create meaningful and lasting impact. His diverse background enables him to provide balanced, innovative, and mission-focused leadership in board service.',
+    ],
+  },
+  {
+    name: 'Albert Paitoo',
+    role: 'Accountant',
+    badge: 'Accountant',
+    gradient: 'from-[#10b981] via-[#3b82f6] to-[#8b5cf6]',
+    image: albertPaitooImage.url,
+    alt: 'Albert Paitoo - Accountant of WASAF',
+    bio: [
+      'Albert Paitoo is an Accountant with over 12 years of experience in multi-state and global payroll administration across the US, UK, Canada, Singapore, Australia, and France. He holds a Workday Pro Administrator certification and is currently pursuing a Master of Divinity at Moody Bible Institute.',
+      'Alongside his career in payroll, Albert serves as a Deacon and Bible teacher, leading the ministry "The Lord\'s Feet". He is the author of Made for This and Understanding God\'s Sovereignty and Human Freedom. Albert lives with his wife, Isabella, and their two sons, Ian and Ephraim.',
     ],
   },
 ];
