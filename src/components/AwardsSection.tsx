@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import isaacSakiAwardLogo from '@/assets/isaac-saki-award-logo.jpg.asset.json';
+const isaacSakiAwardLogo = { url: '/assets/isaac-saki-award-logo.jpg' };
 
 const AwardsSection = () => {
   return (
