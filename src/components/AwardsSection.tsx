@@ -20,6 +20,14 @@ const AwardsSection = () => {
           </p>
         </div>
 
+        <div className="flex justify-center my-10">
+          <img
+            src={isaacSakiAwardLogo.url}
+            alt="Isaac Saki Award - Honoring Excellence"
+            className="w-48 h-48 md:w-64 md:h-64 object-contain rounded-full shadow-elevated"
+          />
+        </div>
+
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-start">
           <div className="bg-card rounded-2xl p-6 shadow-card">
             <h3 className="font-semibold text-foreground mb-3">Eligibility</h3>
