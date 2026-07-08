@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import certificateAsset from '@/assets/zakaria-alaza-certificate.pdf.asset.json';
 const isaacSakiAwardLogo = { url: '/assets/isaac-saki-award-logo.jpg' };
+const certificateAsset = { url: '/assets/zakaria-alaza-isaac-saki-award.pdf' };
 const awardPhotos = [
   { url: '/assets/awards/img-20260708-wa0001.jpg', alt: 'Alaza Zakaria proudly holding his Isaac Saki Award certificate' },
   { url: '/assets/awards/img-20260708-wa0003.jpg', alt: 'Isaac Saki Award recipient displaying his certificate' },
