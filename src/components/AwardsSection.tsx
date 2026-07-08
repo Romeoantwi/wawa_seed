@@ -1,5 +1,11 @@
 import { Button } from '@/components/ui/button';
 const isaacSakiAwardLogo = { url: '/assets/isaac-saki-award-logo.jpg' };
+const awardPhotos = [
+  { url: '/assets/awards/img-20260708-wa0001.jpg', alt: 'Alaza Zakaria proudly holding his Isaac Saki Award certificate' },
+  { url: '/assets/awards/img-20260708-wa0003.jpg', alt: 'Isaac Saki Award recipient displaying his certificate' },
+  { url: '/assets/awards/img-20260708-wa0004.jpg', alt: 'Students celebrating with the Isaac Saki Award recipient' },
+  { url: '/assets/awards/img-20260708-wa0002.jpg', alt: 'Group of students with Isaac Saki Award certificate' },
+];
 
 const AwardsSection = () => {
   return (
@@ -56,6 +62,24 @@ const AwardsSection = () => {
           Our partners, including The Grace Movement USA and ADEA, help us identify
           and support awardees through program partnerships and capacity building.
         </p>
+
+        <div className="max-w-5xl mx-auto mt-12">
+          <h3 className="font-display text-2xl md:text-3xl font-bold text-primary-dark text-center mb-8">
+            Award Recipients
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {awardPhotos.map((photo) => (
+              <div key={photo.url} className="aspect-[3/4] overflow-hidden rounded-2xl shadow-card">
+                <img
+                  src={photo.url}
+                  alt={photo.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
