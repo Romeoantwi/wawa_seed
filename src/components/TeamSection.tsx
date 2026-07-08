@@ -14,7 +14,7 @@ const teamMembers = [
     alt: 'Lucy Asantewaa Saki - President of WASAF',
     bio: [
       'Driven by a deep passion for community empowerment, Lucy Asantewaa Saki founded Wawa Seed Africa Foundation in 2020 during the challenging times of the COVID-19 pandemic. Her vision was to create lasting change for vulnerable children, women, and families across Ghana through education, healthcare, and sustainable development programs.',
-      'Under her leadership, WASAF has grown to impact thousands of lives, providing educational support, vocational training, healthcare services, and community development initiatives that transform communities from within.',
+      'Under her leadership, K A AMISSAH Foundation, now WASAF has grown to impact thousands of lives, providing educational support, vocational training, healthcare services, and community development initiatives that transform communities from within.',
     ],
   },
   {

@@ -37,7 +37,7 @@ const FounderSection = () => {
                 across Ghana through education, healthcare, and sustainable development programs.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Under her leadership, WASAF has grown to impact thousands of lives, providing 
+                Under her leadership, K A AMISSAH Foundation, now WASAF has grown to impact thousands of lives, providing 
                 educational support, vocational training, healthcare services, and community 
                 development initiatives that transform communities from within.
               </p>
