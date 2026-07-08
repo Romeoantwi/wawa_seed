@@ -2,8 +2,8 @@ import { Button } from '@/components/ui/button';
 const isaacSakiAwardLogo = { url: '/assets/isaac-saki-award-logo.jpg' };
 const certificateAsset = { url: '/assets/zakaria-alaza-isaac-saki-award.pdf' };
 const awardPhotos = [
-  { url: '/assets/awards/img-20260708-wa0001.jpg', alt: 'Alaza Zakaria proudly holding his Isaac Saki Award certificate' },
-  { url: '/assets/awards/img-20260708-wa0004.jpg', alt: 'Students celebrating with the Isaac Saki Award recipient' },
+  { url: '/assets/awards/img-20260708-wa0001.jpg', alt: 'Alaza Zakaria proudly holding his Isaac Saki Award certificate', label: 'THE AWARD RECIPIENT (Zakaria Alaza)' },
+  { url: '/assets/awards/img-20260708-wa0004.jpg', alt: 'Students celebrating with the Isaac Saki Award recipient', label: 'Award recipient and friends' },
 ];
 
 const AwardsSection = () => {
@@ -68,13 +68,20 @@ const AwardsSection = () => {
           </h3>
           <div className="grid grid-cols-2 gap-4 md:gap-8">
             {awardPhotos.map((photo) => (
-              <div key={photo.url} className="aspect-[3/4] overflow-hidden rounded-2xl shadow-card">
-                <img
-                  src={photo.url}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
+              <div key={photo.url} className="flex flex-col gap-3">
+                <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-card">
+                  <img
+                    src={photo.url}
+                    alt={photo.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {photo.label && (
+                  <p className="text-center font-medium text-sm md:text-base text-primary-dark">
+                    {photo.label}
+                  </p>
+                )}
               </div>
             ))}
           </div>
