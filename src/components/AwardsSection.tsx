@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import certificateAsset from '@/assets/zakaria-alaza-certificate.pdf.asset.json';
 const isaacSakiAwardLogo = { url: '/assets/isaac-saki-award-logo.jpg' };
 const awardPhotos = [
   { url: '/assets/awards/img-20260708-wa0001.jpg', alt: 'Alaza Zakaria proudly holding his Isaac Saki Award certificate' },
@@ -78,6 +79,20 @@ const AwardsSection = () => {
                 />
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 bg-card rounded-2xl p-6 shadow-card flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+              <h4 className="font-display text-xl font-bold text-primary-dark mb-1">
+                Zakaria Alaza — 2026 Isaac Saki Award Recipient
+              </h4>
+              <p className="text-muted-foreground text-sm">
+                Recognized for academic excellence, leadership, and helping secure a water project for Nyangbande Wawa Seed Academy.
+              </p>
+            </div>
+            <a href={certificateAsset.url} target="_blank" rel="noopener noreferrer">
+              <Button variant="default">View Certificate</Button>
+            </a>
           </div>
         </div>
       </div>
