@@ -4,6 +4,7 @@ const certificateAsset = { url: '/assets/zakaria-alaza-isaac-saki-award.pdf' };
 const awardPhotos = [
   { url: '/assets/awards/img-20260708-wa0001.jpg', alt: 'Alaza Zakaria proudly holding his Isaac Saki Award certificate', label: 'THE AWARD RECIPIENT (Zakaria Alaza)' },
   { url: '/assets/awards/img-20260708-wa0004.jpg', alt: 'Students celebrating with the Isaac Saki Award recipient', label: 'Award recipient and friends' },
+  { url: '/assets/awards/award-winner-family.jpg', alt: 'The award winner and his family standing together', label: 'The award winner and his family' },
 ];
 
 const AwardsSection = () => {
@@ -62,11 +63,11 @@ const AwardsSection = () => {
           and support awardees through program partnerships and capacity building.
         </p>
 
-        <div className="max-w-3xl mx-auto mt-12">
+        <div className="max-w-5xl mx-auto mt-12">
           <h3 className="font-display text-2xl md:text-3xl font-bold text-primary-dark text-center mb-8">
             Award Recipients
           </h3>
-          <div className="grid grid-cols-2 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {awardPhotos.map((photo) => (
               <div key={photo.url} className="flex flex-col gap-3">
                 <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-card">
