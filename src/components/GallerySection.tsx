@@ -1,28 +1,20 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import studentsWithStaff from '@/assets/gallery/students-with-staff.jpg';
-import studentsAssembly from '@/assets/gallery/students-assembly.jpg';
-import staffWithStudents from '@/assets/gallery/staff-with-students.jpg';
-import studentsGroup from '@/assets/gallery/students-group.jpg';
-import studentsWalking from '@/assets/gallery/students-walking.jpg';
-import studentBus from '@/assets/gallery/student-bus.jpg';
-import studentBoarding from '@/assets/gallery/student-boarding.jpg';
-import studentSmiling from '@/assets/gallery/student-smiling.jpg';
-import studentsSeated from '@/assets/gallery/students-seated.jpg';
-import studentsLargeGroup from '@/assets/gallery/students-large-group.jpg';
+import awardRecipientAlone from '@/assets/gallery/awards/award-recipient-alone.jpg';
+import awardRecipientWithFriends from '@/assets/gallery/awards/award-recipient-with-friends.jpg';
 
 const galleryImages = [
-  { src: studentsLargeGroup, alt: 'Students gathered for an educational excursion group photo' },
-  { src: studentsWithStaff, alt: 'WASAF staff with students during educational trip' },
-  { src: studentsAssembly, alt: 'Students assembling before the excursion departure' },
-  { src: staffWithStudents, alt: 'Staff member guiding students on educational trip' },
-  { src: studentsGroup, alt: 'Students in uniform ready for excursion' },
-  { src: studentsWalking, alt: 'Students walking together during educational visit' },
-  { src: studentBus, alt: 'Student boarding the excursion bus' },
-  { src: studentBoarding, alt: 'Students getting on transport for educational trip' },
-  { src: studentSmiling, alt: 'Happy student enjoying the educational excursion' },
-  { src: studentsSeated, alt: 'Students seated together during the trip' },
+  {
+    src: awardRecipientAlone,
+    alt: 'Zakaria Alaza standing alone as the award recipient',
+    caption: 'Zakaria Alaza (The award recipient)',
+  },
+  {
+    src: awardRecipientWithFriends,
+    alt: 'Zakaria Alaza standing with friends as the award recipient',
+    caption: 'The award Recipient as his friends',
+  },
 ];
 
 const GallerySection = () => {
@@ -62,14 +54,13 @@ const GallerySection = () => {
             Our Impact
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-4">
-            Educational Trip (Excursion)
+            Award Recipients
           </h2>
           <h3 className="text-xl md:text-2xl font-semibold text-secondary mb-6">
             Gallery
           </h3>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Highlights from our educational excursion where students explored new learning opportunities 
-            and experienced hands-on education outside the classroom.
+            Highlights of our award recipients and their recognition moments.
           </p>
         </div>
 
@@ -90,7 +81,7 @@ const GallerySection = () => {
               />
               <div className="absolute inset-0 bg-primary-dark/0 group-hover:bg-primary-dark/40 transition-colors duration-300 flex items-center justify-center">
                 <span className="text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  View
+                  {image.caption}
                 </span>
               </div>
             </div>
@@ -135,8 +126,9 @@ const GallerySection = () => {
             onClick={(e) => e.stopPropagation()}
           />
           
-          <div className="absolute bottom-4 text-white text-sm">
-            {selectedIndex + 1} / {galleryImages.length}
+          <div className="absolute bottom-4 left-4 right-4 text-white text-sm flex items-center justify-between">
+            <span>{galleryImages[selectedIndex].caption}</span>
+            <span>{selectedIndex + 1} / {galleryImages.length}</span>
           </div>
         </div>
       )}
