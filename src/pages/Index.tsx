@@ -5,7 +5,6 @@ import TeamSection from '@/components/TeamSection';
 import AboutSection from '@/components/AboutSection';
 import AwardsSection from '@/components/AwardsSection';
 import ProgramsSection from '@/components/ProgramsSection';
-import GallerySection from '@/components/GallerySection';
 import ImpactSection from '@/components/ImpactSection';
 import PartnersSection from '@/components/PartnersSection';
 import ContactSection from '@/components/ContactSection';
@@ -22,7 +21,6 @@ const Index = () => {
         <AboutSection />
         <AwardsSection />
         <ProgramsSection />
-        <GallerySection />
         <ImpactSection />
         <PartnersSection />
         <ContactSection />
