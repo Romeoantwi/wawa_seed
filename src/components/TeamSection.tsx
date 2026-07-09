@@ -3,6 +3,7 @@ import lilyImage from '@/assets/team/lily-saki.jpg';
 import founderPresidentImage from '@/assets/team/founder-president.jpg';
 import revAlfredImage from '@/assets/team/rev-alfred-arthur.jpg';
 const albertPaitooImage = { url: '/assets/albert-paitoo.jpg' };
+const lucyBaidenImage = { url: '/assets/team/lucy-baiden.jpg' };
 
 const teamMembers = [
   {
@@ -27,6 +28,18 @@ const teamMembers = [
     bio: [
       "Melinda Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
       "Deeply involved in women's ministry since 2016, Melinda expanded her global outreach in 2024 through the Wawa Seed Africa Foundation. She was officially ordained by the National Association of Christian Ministers in April 2026 and continues to dedicate her life to sharing the Gospel and serving communities.",
+    ],
+  },
+  {
+    name: 'Lucy Baiden',
+    role: 'Board Member & Clerk',
+    badge: 'Clerk',
+    gradient: 'from-[#f59e0b] via-[#ef4444] to-[#7c3aed]',
+    image: lucyBaidenImage.url,
+    alt: 'Lucy Baiden - Board Member & Clerk of WASAF',
+    bio: [
+      'Lucy Baiden is a Financial Educator specializing in Insurance and Retirement Planning. She has a passion to see children grow and thrive unhindered wherever they find themselves and strongly believes that children are the future.',
+      'Baking, cooking and crochet are some of her hobbies.',
     ],
   },
   {
