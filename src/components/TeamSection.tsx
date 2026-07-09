@@ -3,6 +3,7 @@ import lilyImage from '@/assets/team/lily-saki.jpg';
 import founderPresidentImage from '@/assets/team/founder-president.jpg';
 import revAlfredImage from '@/assets/team/rev-alfred-arthur.jpg';
 const albertPaitooImage = { url: '/assets/albert-paitoo.jpg' };
+const lucyBaidenImage = { url: '/assets/team/lucy-baiden.jpg' };
 
 const teamMembers = [
   {
