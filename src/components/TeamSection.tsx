@@ -31,6 +31,18 @@ const teamMembers = [
     ],
   },
   {
+    name: 'Lucy Baiden',
+    role: 'Board Member & Clerk',
+    badge: 'Clerk',
+    gradient: 'from-[#f59e0b] via-[#ef4444] to-[#7c3aed]',
+    image: lucyBaidenImage.url,
+    alt: 'Lucy Baiden - Board Member & Clerk of WASAF',
+    bio: [
+      'Lucy Baiden is a Financial Educator specializing in Insurance and Retirement Planning. She has a passion to see children grow and thrive unhindered wherever they find themselves and strongly believes that children are the future.',
+      'Baking, cooking and crochet are some of her hobbies.',
+    ],
+  },
+  {
     name: 'Lily Saki',
     role: 'Program Director',
     badge: 'Program\nDirector',
