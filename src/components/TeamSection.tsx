@@ -1,115 +1,33 @@
-import melindaImage from '@/assets/team/melinder-siner.jpg';
-import lilyImage from '@/assets/team/lily-saki.jpg';
-import founderPresidentImage from '@/assets/team/founder-president.jpg';
-import revAlfredImage from '@/assets/team/rev-alfred-arthur.jpg';
-const albertPaitooImage = { url: '/assets/albert-paitoo.jpg' };
-const lucyBaidenImage = { url: '/assets/team/lucy-baiden.jpg' };
-
-const teamMembers = [
-  {
-    name: 'Lucy Asantewaa Saki',
-    role: 'President',
-    badge: 'President',
-    gradient: 'from-[#3503ad] via-[#f7308c] to-[#ff5a8e]',
-    image: founderPresidentImage,
-    alt: 'Lucy Asantewaa Saki - President of WASAF',
-    bio: [
-      'Driven by a deep passion for community empowerment, Lucy Asantewaa Saki founded Wawa Seed Africa Foundation in 2020 during the challenging times of the COVID-19 pandemic. Her vision was to create lasting change for vulnerable children, women, and families across Ghana through education, healthcare, and sustainable development programs.',
-      'Under her leadership, K A AMISSAH Foundation, now WASAF has grown to impact thousands of lives, providing educational support, vocational training, healthcare services, and community development initiatives that transform communities from within.',
-    ],
-  },
-  {
-    name: 'Melinda Siner',
-    role: 'Ordained Minister, Nurse & Board Member',
-    badge: 'Board\nMember',
-    gradient: 'from-[#ccff00] via-[#09afff] to-[#0c4dad]',
-    image: melindaImage,
-    alt: 'Melinda Siner - Board Member of WASAF',
-    bio: [
-      "Melinda Siner is an ordained minister, nurse, and former business owner dedicated to faith and service. Raised in Virginia, she ran a landscaping business for 23 years, homeschooled her daughter, and later worked as a Labor and Delivery nurse.",
-      "Deeply involved in women's ministry since 2016, Melinda expanded her global outreach in 2024 through the Wawa Seed Africa Foundation. She was officially ordained by the National Association of Christian Ministers in April 2026 and continues to dedicate her life to sharing the Gospel and serving communities.",
-    ],
-  },
-  {
-    name: 'Lucy Baiden',
-    role: 'Board Member & Clerk',
-    badge: 'Clerk',
-    gradient: 'from-[#f59e0b] via-[#ef4444] to-[#7c3aed]',
-    image: lucyBaidenImage.url,
-    alt: 'Lucy Baiden - Board Member & Clerk of WASAF',
-    bio: [
-      'Lucy Baiden is a Financial Educator specializing in Insurance and Retirement Planning. She has a passion to see children grow and thrive unhindered wherever they find themselves and strongly believes that children are the future.',
-      'Baking, cooking and crochet are some of her hobbies.',
-    ],
-  },
-  {
-    name: 'Lily Saki',
-    role: 'Program Director',
-    badge: 'Program\nDirector',
-    gradient: 'from-[#f97316] via-[#f43f5e] to-[#c026d3]',
-    image: lilyImage,
-    alt: 'Lily Saki - Program Director of WASAF',
-    bio: [
-      'Lily Saki is an architect with a Master of Architecture from the Harvard Graduate School of Design and a Bachelor of Science in Architecture from Wentworth Institute of Technology. Her interests center on sustainable design, climate resilience, and creating meaningful impact through the built environment.',
-      'She currently serves as Program Director at Wawa Seed Africa Foundation, where she leads programs focused on education, community development, and youth empowerment across Africa.',
-    ],
-  },
-  {
-    name: 'Rev Alfred Arthur',
-    role: 'Secretary',
-    badge: 'Secretary',
-    gradient: 'from-[#06b6d4] via-[#3b82f6] to-[#6366f1]',
-    image: revAlfredImage,
-    alt: 'Rev Alfred Arthur - Secretary of WASAF',
-    bio: [
-      'Rev. Alfred Arthur holds a Bachelor’s degree in Real Estate and a Master’s degree in Information Technology Management. A pastor and community leader with experience in Ghana and the United States, he brings expertise in leadership, organizational development, and community engagement.',
-      'He is passionate about strengthening institutions, building strategic partnerships, and advancing initiatives that create meaningful and lasting impact. His diverse background enables him to provide balanced, innovative, and mission-focused leadership in board service.',
-    ],
-  },
-  {
-    name: 'Albert Paitoo',
-    role: 'Accountant',
-    badge: 'Accountant',
-    gradient: 'from-[#10b981] via-[#3b82f6] to-[#8b5cf6]',
-    image: albertPaitooImage.url,
-    alt: 'Albert Paitoo - Accountant of WASAF',
-    bio: [
-      'Albert Paitoo is an Accountant with over 12 years of experience in multi-state and global payroll administration across the US, UK, Canada, Singapore, Australia, and France. He holds a Workday Pro Administrator certification and is currently pursuing a Master of Divinity at Moody Bible Institute.',
-      'Alongside his career in payroll, Albert serves as a Deacon and Bible teacher, leading the ministry "The Lord\'s Feet". He is the author of Made for This and Understanding God\'s Sovereignty and Human Freedom. Albert lives with his wife, Isabella, and their two sons, Ian and Ephraim.',
-    ],
-  },
-];
+import { Users } from 'lucide-react';
+import { useSection } from '@/hooks/useSiteContent';
 
 const TeamSection = () => {
+  const team = useSection('team');
+
   return (
-    <section id="team" className="py-16 md:py-24 bg-background">
+    <section id="team" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 bg-accent text-accent-foreground rounded-full text-sm font-medium mb-4">
-            Our Team
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Meet the People Behind Our Mission
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Users className="w-5 h-5 text-primary" />
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">{team.badge}</span>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-6">
+            {team.heading}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Dedicated leaders and volunteers working together to transform lives across Ghana and beyond.
-          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">{team.intro}</p>
         </div>
 
-        <div className="max-w-5xl mx-auto space-y-10">
-          {teamMembers.map((member, idx) => (
-            <div
-              key={member.name}
-              className={`grid md:grid-cols-2 gap-10 items-center bg-card rounded-2xl p-8 md:p-12 shadow-card ${
-                idx % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''
-              }`}
-            >
-              <div className="relative">
+        <div className="max-w-5xl mx-auto space-y-16">
+          {team.members.map((member, index) => (
+            <div key={member.name} className="grid md:grid-cols-2 gap-10 items-center">
+              <div className={`relative ${index % 2 === 1 ? 'md:order-2' : ''}`}>
                 <div className="relative aspect-[3/4] max-w-sm mx-auto">
                   <img
                     src={member.image}
-                    alt={member.alt}
+                    alt={`${member.name} - ${member.role}`}
                     className="w-full h-full object-cover rounded-2xl shadow-elevated"
+                    loading="lazy"
                   />
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary rounded-full flex items-center justify-center shadow-lg">
                     <span className="text-secondary-foreground font-display font-bold text-center text-xs leading-tight whitespace-pre-line">
@@ -119,16 +37,14 @@ const TeamSection = () => {
                 </div>
               </div>
 
-              <div className="text-center md:text-left">
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  {member.name}
-                </h3>
+              <div className={`text-center md:text-left ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">{member.name}</h3>
                 <p className="text-primary font-medium mb-4">{member.role}</p>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  {member.bio.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
+                {member.bio.map((paragraph, i) => (
+                  <p key={i} className="text-muted-foreground leading-relaxed mb-4">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </div>
           ))}
