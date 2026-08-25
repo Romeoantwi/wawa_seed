@@ -1,11 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
+import { useSection } from '@/hooks/useSiteContent';
 
-const stats = [
-  { value: 500, suffix: '+', label: 'Children Supported' },
-  { value: 200, suffix: '+', label: 'Women Empowered' },
-  { value: 15, suffix: '', label: 'Communities Reached' },
-  { value: 6, suffix: '', label: 'Years of Impact' },
-];
+type Stat = { value: number; suffix: string; label: string };
 
 const useCountUp = (end: number, duration: number = 2000) => {
   const [count, setCount] = useState(0);
@@ -50,8 +46,8 @@ const useCountUp = (end: number, duration: number = 2000) => {
   return { count, ref };
 };
 
-const StatCard = ({ stat, index }: { stat: typeof stats[number]; index: number }) => {
-  const { count, ref } = useCountUp(stat.value);
+const StatCard = ({ stat, index }: { stat: Stat; index: number }) => {
+  const { count, ref } = useCountUp(Number(stat.value) || 0);
 
   return (
     <div
@@ -60,16 +56,17 @@ const StatCard = ({ stat, index }: { stat: typeof stats[number]; index: number }
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-2">
-        {count}{stat.suffix}
+        {count}
+        {stat.suffix}
       </div>
-      <div className="text-primary-foreground/90 font-medium">
-        {stat.label}
-      </div>
+      <div className="text-primary-foreground/90 font-medium">{stat.label}</div>
     </div>
   );
 };
 
 const ImpactSection = () => {
+  const impact = useSection('impact');
+
   return (
     <section id="impact" className="py-20 md:py-28 bg-gradient-hero relative overflow-hidden">
       {/* Decorative Elements */}
@@ -79,28 +76,22 @@ const ImpactSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary-foreground/10 text-primary-foreground rounded-full text-sm font-medium mb-4">
-            Our Reach
+            {impact.badge}
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-            Creating Lasting Impact
+            {impact.heading}
           </h2>
-          <p className="text-primary-foreground/80 text-lg leading-relaxed">
-            Since 2020, we have grown as a trusted community-based organization,
-            committed to transforming lives across Ghana.
-          </p>
+          <p className="text-primary-foreground/80 text-lg leading-relaxed">{impact.intro}</p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
+          {impact.stats.map((stat, index) => (
             <StatCard key={stat.label} stat={stat} index={index} />
           ))}
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
-            Our collaboration with <span className="text-secondary font-semibold">The Grace Movement USA</span> has
-            helped strengthen and scale our programs, extending our reach to more communities in need.
-          </p>
+          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">{impact.note}</p>
         </div>
       </div>
     </section>

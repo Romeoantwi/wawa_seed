@@ -3,8 +3,10 @@ import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { useSection } from '@/hooks/useSiteContent';
 
 const ContactSection = () => {
+  const contact = useSection('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,30 +20,35 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
+      // Store the message so it shows up in the admin inbox
+      const { error: insertError } = await supabase.from('contact_messages').insert({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+      });
+      if (insertError) throw insertError;
+
+      // Best-effort email notification
       const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: JSON.stringify({
+        body: {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
         },
       });
-
-      if (error) throw error;
+      if (error) console.error('Email notification failed:', error);
 
       toast({
-        title: "Message Sent!",
+        title: 'Message Sent!',
         description: "Thank you for reaching out. We'll get back to you soon.",
       });
       setFormData({ name: '', email: '', message: '' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error sending message:', error);
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or email us directly.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to send message. Please try again or email us directly.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
@@ -53,27 +60,20 @@ const ContactSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 bg-accent text-accent-foreground rounded-full text-sm font-medium mb-4">
-            Get In Touch
+            {contact.badge}
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-6">
-            Contact Us
+            {contact.heading}
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Have questions or want to partner with us? We'd love to hear from you.
-          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">{contact.intro}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-8">
             <div>
-              <h3 className="font-display text-2xl font-bold text-foreground mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                Whether you want to volunteer, donate, or simply learn more about our work, 
-                we're here to answer your questions and welcome your support.
-              </p>
+              <h3 className="font-display text-2xl font-bold text-foreground mb-6">{contact.connectHeading}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-8">{contact.connectText}</p>
             </div>
 
             <div className="space-y-6">
@@ -83,8 +83,11 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Location</h4>
-                  <p className="text-muted-foreground">Ghana: Lungni Jakpado</p>
-                  <p className="text-muted-foreground">US: 56 Burnett St. Unit 2, Boston MA 02130</p>
+                  {contact.locations.map((line) => (
+                    <p key={line} className="text-muted-foreground">
+                      {line}
+                    </p>
+                  ))}
                 </div>
               </div>
 
@@ -94,8 +97,11 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                  <a href="mailto:lucysaki99@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    lucysaki99@gmail.com
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {contact.email}
                   </a>
                 </div>
               </div>
@@ -106,7 +112,12 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                  <a href="tel:+18574130329" className="text-muted-foreground hover:text-primary transition-colors">857-413-0329</a>
+                  <a
+                    href={`tel:${contact.phoneHref}`}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {contact.phone}
+                  </a>
                 </div>
               </div>
             </div>
@@ -126,6 +137,7 @@ const ContactSection = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                   placeholder="John Doe"
+                  maxLength={120}
                   required
                 />
               </div>
@@ -141,6 +153,7 @@ const ContactSection = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                   placeholder="john@example.com"
+                  maxLength={255}
                   required
                 />
               </div>
@@ -156,6 +169,7 @@ const ContactSection = () => {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
                   placeholder="How can we help you?"
+                  maxLength={5000}
                   required
                 />
               </div>

@@ -1,8 +1,10 @@
 import { Heart, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import logo from '@/assets/wasaf-logo.jpg';
+import { useSection } from '@/hooks/useSiteContent';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const footer = useSection('footer');
 
   return (
     <footer className="bg-primary-dark text-primary-foreground">
@@ -13,18 +15,13 @@ const Footer = () => {
             <div className="bg-white rounded-xl p-3 inline-block mb-4">
               <img src={logo} alt="WASAF Logo" className="h-20 w-auto" />
             </div>
-            <p className="text-primary-foreground/80 leading-relaxed mb-4 max-w-md">
-              Wawa Seed Africa Foundation (WASAF) is a community-based organization 
-              committed to nurturing dreams and empowering Africa through sustainable 
-              development and compassionate service.
-            </p>
-            <p className="text-primary-foreground/60 text-sm mb-2">
-              Registered NGO in Ghana since 2020
-            </p>
+            <p className="text-primary-foreground/80 leading-relaxed mb-4 max-w-md">{footer.about}</p>
+            <p className="text-primary-foreground/60 text-sm mb-2">{footer.registration}</p>
             <div className="text-primary-foreground/70 text-sm">
-              <p className="font-semibold text-primary-foreground/80">US Location:</p>
-              <p>56 Burnett St. Unit 2</p>
-              <p>Boston, MA 02130</p>
+              <p className="font-semibold text-primary-foreground/80">{footer.usLocationLabel}</p>
+              {footer.usLocationLines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
             </div>
           </div>
 
@@ -59,10 +56,11 @@ const Footer = () => {
           <div>
             <h4 className="font-display text-lg font-bold mb-4">Programs</h4>
             <ul className="space-y-3">
-              <li className="text-primary-foreground/80">Education Support</li>
-              <li className="text-primary-foreground/80">Women Empowerment</li>
-              <li className="text-primary-foreground/80">Healthcare</li>
-              <li className="text-primary-foreground/80">Vocational Training</li>
+              {footer.programs.map((program) => (
+                <li key={program} className="text-primary-foreground/80">
+                  {program}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -76,16 +74,40 @@ const Footer = () => {
               © {currentYear} Wawa Seed Africa Foundation. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://facebook.com/WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+              <a
+                href={footer.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-primary-foreground/60 hover:text-secondary transition-colors"
+              >
                 <Facebook size={18} />
               </a>
-              <a href="https://instagram.com/WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+              <a
+                href={footer.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-primary-foreground/60 hover:text-secondary transition-colors"
+              >
                 <Instagram size={18} />
               </a>
-              <a href="https://twitter.com/WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+              <a
+                href={footer.socials.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter / X"
+                className="text-primary-foreground/60 hover:text-secondary transition-colors"
+              >
                 <Twitter size={18} />
               </a>
-              <a href="https://youtube.com/@WASAFGhana" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-primary-foreground/60 hover:text-secondary transition-colors">
+              <a
+                href={footer.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="text-primary-foreground/60 hover:text-secondary transition-colors"
+              >
                 <Youtube size={18} />
               </a>
             </div>

@@ -1,14 +1,8 @@
 import { Handshake } from 'lucide-react';
-import graceMovementLogo from '@/assets/partners/grace-movement-logo.jpg';
-import interfaithTourismLogo from '@/assets/partners/interfaith-tourism-logo.jpg';
+import { useSection } from '@/hooks/useSiteContent';
 
 const PartnersSection = () => {
-  const partners = [
-    { name: 'The Grace Movement USA', logo: graceMovementLogo },
-    { name: 'ADEA', logo: null },
-    { name: 'Interfaith Tourism', logo: interfaithTourismLogo },
-    { name: 'Image Ghana', logo: null },
-  ];
+  const partners = useSection('partners');
 
   return (
     <section id="partners" className="py-16 bg-background">
@@ -16,33 +10,28 @@ const PartnersSection = () => {
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Handshake className="w-6 h-6 text-primary" />
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">Our Partners</span>
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">{partners.label}</span>
           </div>
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-            Working Together for Change
-          </h2>
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">{partners.heading}</h2>
         </div>
 
-        <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-6">
-          Our collaboration with The Grace Movement USA has helped strengthen and scale our programs, extending our reach to more communities in need. ADEA has helped us build our capacity in training and peer training support.
-        </p>
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-6">{partners.intro}</p>
 
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
-          {partners.map((partner, index) => (
+          {partners.items.map((partner, index) => (
             <div
               key={index}
               className="bg-muted/50 px-6 py-4 rounded-lg border border-border hover:border-primary/30 hover:bg-muted transition-all duration-300 flex items-center gap-3"
             >
               {partner.logo && (
-                <img 
-                  src={partner.logo} 
-                  alt={`${partner.name} logo`} 
+                <img
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  loading="lazy"
                   className="w-10 h-10 object-contain rounded"
                 />
               )}
-              <span className="font-display text-lg font-semibold text-foreground">
-                {partner.name}
-              </span>
+              <span className="font-display text-lg font-semibold text-foreground">{partner.name}</span>
             </div>
           ))}
         </div>
