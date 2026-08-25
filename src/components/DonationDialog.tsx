@@ -10,12 +10,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+import { useSection } from '@/hooks/useSiteContent';
 
 interface DonationDialogProps {
   children: React.ReactNode;
 }
 
 const DonationDialog = ({ children }: DonationDialogProps) => {
+  const donation = useSection('donation');
   const { toast } = useToast();
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
@@ -36,16 +38,16 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl">Make a Donation</DialogTitle>
+          <DialogTitle className="font-display text-2xl">{donation.title}</DialogTitle>
           <DialogDescription>
-            Choose your preferred payment method to support our mission.
+            {donation.description}
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 mt-4">
           {/* CashApp */}
           <a
-            href="https://cash.app/$KAAF19"
+            href={donation.cashAppUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-4 p-4 rounded-lg border border-border bg-background hover:bg-muted/50 transition-colors group"
@@ -55,7 +57,7 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-foreground">CashApp</h3>
-              <p className="text-primary font-mono">$KAAF19</p>
+              <p className="text-primary font-mono">{donation.cashAppTag}</p>
             </div>
             <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
           </a>
@@ -63,7 +65,7 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
           {/* Zelle */}
           <div className="rounded-lg border border-border bg-background overflow-hidden">
             <button
-              onClick={() => copyToClipboard('lucysaki99@gmail.com', 'Zelle email')}
+              onClick={() => copyToClipboard(donation.zelleEmail, 'Zelle email')}
               className="w-full flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors text-left"
             >
               <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center shrink-0">
@@ -71,7 +73,7 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-foreground">Zelle</h3>
-                <p className="text-primary font-mono text-sm">lucysaki99@gmail.com</p>
+                <p className="text-primary font-mono text-sm">{donation.zelleEmail}</p>
               </div>
               {copiedField === 'Zelle email' ? (
                 <Check className="w-5 h-5 text-green-500" />
@@ -98,7 +100,7 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Bank Transfer</h3>
-                <p className="text-sm text-muted-foreground">Universal Merchant Bank</p>
+                <p className="text-sm text-muted-foreground">{donation.bankName}</p>
               </div>
             </div>
             
@@ -106,12 +108,12 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wide">Account Number</p>
-                  <p className="font-mono text-primary text-lg">0292922566012</p>
+                  <p className="font-mono text-primary text-lg">{donation.bankAccount}</p>
                 </div>
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => copyToClipboard('0292922566012', 'Account number')}
+                  onClick={() => copyToClipboard(donation.bankAccount, 'Account number')}
                 >
                   {copiedField === 'Account number' ? (
                     <>
@@ -139,13 +141,13 @@ const DonationDialog = ({ children }: DonationDialogProps) => {
             </div>
             
             <div className="pl-16">
-              <p className="font-semibold text-foreground">K A Amissah Foundation, Inc.</p>
+              <p className="font-semibold text-foreground">{donation.checkPayee}</p>
             </div>
           </div>
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-4">
-          Thank you for supporting WASAF's mission to empower communities in Ghana.
+          {donation.footnote}
         </p>
       </DialogContent>
     </Dialog>
