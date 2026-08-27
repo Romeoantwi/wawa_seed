@@ -1,15 +1,18 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Loader2, Mail } from 'lucide-react';
+import { ArrowLeft, KeyRound, Loader2, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import logo from '@/assets/wasaf-logo.jpg';
 
 const Auth = () => {
-  const [email, setEmail] = useState('lucysaki99@gmail.com');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [mode, setMode] = useState('signin');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -18,33 +21,67 @@ const Auth = () => {
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) navigate('/admin', { replace: true });
     });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) navigate('/admin', { replace: true });
+    });
+
+    return () => listener.subscription.unsubscribe();
   }, [navigate]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
 
-    const redirectTo = `${window.location.origin}/admin`;
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: { emailRedirectTo: redirectTo },
-    });
+    const credentials = { email: email.trim(), password };
 
+    if (mode === 'signin') {
+      const { error } = await supabase.auth.signInWithPassword(credentials);
+      setIsSubmitting(false);
+      if (error) {
+        toast({ title: 'Login failed', description: error.message, variant: 'destructive' });
+        return;
+      }
+      navigate('/admin', { replace: true });
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
+      ...credentials,
+      options: { emailRedirectTo: `${window.location.origin}/admin` },
+    });
     setIsSubmitting(false);
 
     if (error) {
-      toast({
-        title: 'Login link failed',
-        description: error.message,
-        variant: 'destructive',
-      });
+      toast({ title: 'Could not create account', description: error.message, variant: 'destructive' });
+      return;
+    }
+
+    if (data.session) {
+      navigate('/admin', { replace: true });
       return;
     }
 
     toast({
       title: 'Check your email',
-      description: 'Open the secure login link to access the admin dashboard.',
+      description: 'Confirm your email address, then sign in with your new password.',
     });
+    setMode('signin');
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email.trim()) {
+      toast({ title: 'Enter your email first', variant: 'destructive' });
+      return;
+    }
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    if (error) {
+      toast({ title: 'Reset failed', description: error.message, variant: 'destructive' });
+      return;
+    }
+    toast({ title: 'Reset email sent', description: 'Follow the link to choose a new password.' });
   };
 
   return (
@@ -62,6 +99,16 @@ const Auth = () => {
             <p className="mt-2 text-sm text-muted-foreground">Secure access for approved WASAF administrators.</p>
           </div>
 
+          <Tabs value={mode} onValueChange={setMode} className="mb-6">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="signin">Sign in</TabsTrigger>
+              <TabsTrigger value="signup">Set up password</TabsTrigger>
+            </TabsList>
+            <TabsContent value="signup" className="mt-3 text-xs text-muted-foreground">
+              First time here? Create your password once, then sign in with it from now on.
+            </TabsContent>
+          </Tabs>
+
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email">Email address</Label>
@@ -76,10 +123,32 @@ const Auth = () => {
               />
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="••••••••"
+                autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
+                minLength={8}
+                required
+              />
+            </div>
+
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
-              Send login link
+              {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : mode === 'signin' ? <LogIn className="h-4 w-4" /> : <KeyRound className="h-4 w-4" />}
+              {mode === 'signin' ? 'Sign in' : 'Create password'}
             </Button>
+
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:underline"
+            >
+              Forgot your password?
+            </button>
           </form>
         </section>
       </div>
