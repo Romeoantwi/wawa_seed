@@ -22,7 +22,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { defaultContent, mergeContent, SectionKey, SiteContent } from '@/content/defaults';
+import { defaultContent, SectionKey, SiteContent } from '@/content/defaults';
+import { mergeContent } from '@/hooks/useSiteContent';
 import { supabase } from '@/integrations/supabase/client';
 import type { Json, Tables } from '@/integrations/supabase/types';
 import { cn } from '@/lib/utils';
