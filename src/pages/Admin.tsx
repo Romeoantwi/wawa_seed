@@ -184,6 +184,8 @@ const Admin = () => {
         navigate('/auth', { replace: true });
         return;
       }
+      setSessionEmail(data.session.user.email ?? null);
+
 
       const { data: allowed, error } = await supabase.rpc('is_admin');
       if (error || !allowed) {
