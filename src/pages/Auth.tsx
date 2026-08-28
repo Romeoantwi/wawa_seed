@@ -18,16 +18,26 @@ const Auth = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate('/admin', { replace: true });
-    });
+    let active = true;
+
+    const routeIfAdmin = async (hasSession: boolean) => {
+      if (!hasSession) return;
+      const { data: allowed } = await supabase.rpc('is_admin');
+      if (active && allowed) navigate('/admin', { replace: true });
+    };
+
+    supabase.auth.getSession().then(({ data }) => routeIfAdmin(Boolean(data.session)));
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) navigate('/admin', { replace: true });
+      routeIfAdmin(Boolean(session));
     });
 
-    return () => listener.subscription.unsubscribe();
+    return () => {
+      active = false;
+      listener.subscription.unsubscribe();
+    };
   }, [navigate]);
+
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,14 +47,30 @@ const Auth = () => {
 
     if (mode === 'signin') {
       const { error } = await supabase.auth.signInWithPassword(credentials);
-      setIsSubmitting(false);
       if (error) {
+        setIsSubmitting(false);
         toast({ title: 'Login failed', description: error.message, variant: 'destructive' });
         return;
       }
+
+      const { data: allowed } = await supabase.rpc('is_admin');
+      if (!allowed) {
+        await supabase.auth.signOut();
+        setIsSubmitting(false);
+        setPassword('');
+        toast({
+          title: 'This user is not registered as an admin',
+          description: 'Please enter the correct admin email address.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      setIsSubmitting(false);
       navigate('/admin', { replace: true });
       return;
     }
+
 
     const { data, error } = await supabase.auth.signUp({
       ...credentials,
