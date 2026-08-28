@@ -131,6 +131,8 @@ const formatDate = (value: string) =>
 const Admin = () => {
   const [checkingAccess, setCheckingAccess] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [sessionEmail, setSessionEmail] = useState<string | null>(null);
+
   const [selectedSection, setSelectedSection] = useState<SectionKey>('hero');
   const [content, setContent] = useState<SiteContent>(defaultContent);
   const [draft, setDraft] = useState<unknown>(cloneValue(defaultContent.hero));
