@@ -18,16 +18,26 @@ const Auth = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate('/admin', { replace: true });
-    });
+    let active = true;
+
+    const routeIfAdmin = async (hasSession: boolean) => {
+      if (!hasSession) return;
+      const { data: allowed } = await supabase.rpc('is_admin');
+      if (active && allowed) navigate('/admin', { replace: true });
+    };
+
+    supabase.auth.getSession().then(({ data }) => routeIfAdmin(Boolean(data.session)));
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) navigate('/admin', { replace: true });
+      routeIfAdmin(Boolean(session));
     });
 
-    return () => listener.subscription.unsubscribe();
+    return () => {
+      active = false;
+      listener.subscription.unsubscribe();
+    };
   }, [navigate]);
+
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
