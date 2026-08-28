@@ -37,14 +37,30 @@ const Auth = () => {
 
     if (mode === 'signin') {
       const { error } = await supabase.auth.signInWithPassword(credentials);
-      setIsSubmitting(false);
       if (error) {
+        setIsSubmitting(false);
         toast({ title: 'Login failed', description: error.message, variant: 'destructive' });
         return;
       }
+
+      const { data: allowed } = await supabase.rpc('is_admin');
+      if (!allowed) {
+        await supabase.auth.signOut();
+        setIsSubmitting(false);
+        setPassword('');
+        toast({
+          title: 'This user is not registered as an admin',
+          description: 'Please enter the correct admin email address.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      setIsSubmitting(false);
       navigate('/admin', { replace: true });
       return;
     }
+
 
     const { data, error } = await supabase.auth.signUp({
       ...credentials,
