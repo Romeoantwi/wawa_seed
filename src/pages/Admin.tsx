@@ -334,7 +334,7 @@ const Admin = () => {
               </div>
             </div>
             {isImage ? (
-              <img src={value} alt={humanize(label)} className="h-36 w-full rounded-lg object-cover md:h-64 lg:h-80" />
+              <img src={value} alt={humanize(label)} className="aspect-square w-full rounded-lg object-contain bg-muted" />
             ) : value ? (
               <p className="text-sm text-muted-foreground">Current file link is set.</p>
             ) : (
