@@ -460,16 +460,20 @@ const Admin = () => {
     return (
       <main className="flex min-h-screen items-center justify-center bg-background px-4">
         <section className="max-w-md rounded-2xl border border-border bg-card p-8 text-center shadow-card">
-          <h1 className="font-display text-3xl font-bold text-primary-dark">Access restricted</h1>
-          <p className="mt-3 text-muted-foreground">This dashboard is only available to approved WASAF administrators.</p>
+          <h1 className="font-display text-3xl font-bold text-primary-dark">This user is not registered as an admin</h1>
+          <p className="mt-3 text-muted-foreground">
+            {sessionEmail ? `${sessionEmail} does not have admin access. ` : ''}
+            Please sign in with the correct admin email address.
+          </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button onClick={() => navigate('/auth')}>Admin login</Button>
+            <Button onClick={signOut}>Use a different email</Button>
             <Button variant="outline" onClick={() => navigate('/')}>Back to website</Button>
           </div>
         </section>
       </main>
     );
   }
+
 
   return (
     <main className="min-h-screen bg-background">
